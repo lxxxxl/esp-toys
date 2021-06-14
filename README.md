@@ -21,4 +21,10 @@ Controls small LED strip according to current lightness.
 | 15          | D8                         |
 | 16          | D0 (also Led2 but inverse) |
 
-[Source](https://forum.micropython.org/viewtopic.php?p=21483&sid=3b1a4d930261549b9694cbeb5a9e03d3#p21483)
+[Source](https://forum.micropython.org/viewtopic.php?p=21483&sid=3b1a4d930261549b9694cbeb5a9e03d3#p21483)  
+  
+## Wi-Fi AP Search
+Continousle shows RSSI level of selected AP.  
+Type `ap_list()` to get list of available APs.  
+Type `ap_find(AP_NAME)` to start searching AP.  
+Type `ap_find_stop()` to stop search.  
