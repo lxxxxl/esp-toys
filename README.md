@@ -28,3 +28,9 @@ Continuously shows RSSI level of selected AP.
 Type `ap_list()` to get list of available APs.  
 Type `ap_find(AP_NAME)` to start searching AP.  
 Type `ap_find_stop()` to stop search.  
+
+## Meteostation
+Shows temperature and humidity.  
+Dependencies:  
+- [MicroPyServer, a simple HTTP server for MicroPython projects](https://github.com/troublegum/micropyserver)  
+- [MicroPython driver for the AHT10 and AHT20 temperature and humindity sensors](https://github.com/targetblank/micropython_ahtx0)  
