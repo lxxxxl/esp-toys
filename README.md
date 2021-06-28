@@ -34,3 +34,8 @@ Shows temperature and humidity.
 Dependencies:  
 - [MicroPyServer, a simple HTTP server for MicroPython projects](https://github.com/troublegum/micropyserver)  
 - [MicroPython driver for the AHT10 and AHT20 temperature and humindity sensors](https://github.com/targetblank/micropython_ahtx0)  
+
+## HTTP Server
+Static HTTP server with HTML-only support.  
+1. Place your html files to `/www` directory.  
+2. Replace SSID and PASSWORD with yours.  
