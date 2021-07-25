@@ -25,3 +25,8 @@ Dependencies:
 Static HTTP server with HTML-only support.  
 1. Place your html files to `/www` directory.  
 2. Replace SSID and PASSWORD with yours.  
+
+## Mail Alert
+Sends email on some alert.  
+Connect alert signal source to RST pin. Source should emit LOW signal on some event.  
+Uses [ESP Mail Client](https://github.com/mobizt/ESP-Mail-Client) library.
