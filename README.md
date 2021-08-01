@@ -30,3 +30,10 @@ Static HTTP server with HTML-only support.
 Sends email on some alert.  
 Connect alert signal source to RST pin. Source should emit LOW signal on some event.  
 Uses [ESP Mail Client](https://github.com/mobizt/ESP-Mail-Client) library.
+
+## IR Melody
+Turns TV remote to piano.  
+Sometimes plays one of 7 predefined melodies, or generates and plays a new one.  
+Uses `VS1838 IR sensor`.  
+Pinout (front view):  
+| OUT | GND | VCC |
