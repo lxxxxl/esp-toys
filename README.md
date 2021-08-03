@@ -1,7 +1,7 @@
 # esp-toys
 Toy projects based on Espressif boards
 
-## NodeMCU v3 pin numbering for MIcroPython and Arduino
+## NodeMCU v3 pin numbering for MicroPython and Arduino
 ![image_1](https://raw.githubusercontent.com/lxxxxl/esp-toys/master/images/pins.png?raw=true)  
 
 ## Light control
@@ -42,3 +42,6 @@ Pinout (front view):
 Calculates distance to objects using `HC-SR04` ultrasonic sensor.  
 `ruler.ino` calculates distance and broadcasts it via UDP.  
 `app` shows distance in UI.
+
+## Termenvox
+[Theremin](https://en.wikipedia.org/wiki/Theremin) implementation based on `HC-SR04` ultrasonic sensor.  
