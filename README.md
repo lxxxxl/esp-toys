@@ -37,3 +37,8 @@ Sometimes plays one of 7 predefined melodies, or generates and plays a new one.
 Uses `VS1838 IR sensor`.  
 Pinout (front view):  
 | OUT | GND | VCC |
+
+## Ruler
+Calculates distance to objects using `HC-SR04` ultrasonic sensor.  
+`ruler.ino` calculates distance and broadcasts it via UDP.  
+`app` shows distance in UI.
