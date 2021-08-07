@@ -45,3 +45,6 @@ Calculates distance to objects using `HC-SR04` ultrasonic sensor.
 
 ## Termenvox
 [Theremin](https://en.wikipedia.org/wiki/Theremin) implementation based on `HC-SR04` ultrasonic sensor.  
+
+## I2C Scan
+Scans I2C bus for devices.  
