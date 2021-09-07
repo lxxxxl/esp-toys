@@ -48,3 +48,7 @@ Calculates distance to objects using `HC-SR04` ultrasonic sensor.
 
 ## I2C Scan
 Scans I2C bus for devices.  
+
+## Templogger
+Saves temperature and humidity to SD card.  
+`app` builds graph from collected data.
