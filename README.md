@@ -52,3 +52,8 @@ Scans I2C bus for devices.
 ## Templogger
 Saves temperature and humidity to SD card.  
 `app` builds graph from collected data.
+
+## Templogger-YandexDisk
+Saves temperature and humidity to Yandex Disk.  
+`app` builds graph from collected data.  
+Uses [YandexDiskClient library](https://github.com/lxxxxl/YandexDiskClient) for ESP8266 and [QYandexDisk library](https://github.com/lxxxxl/QYandexDisk) for Qt.
