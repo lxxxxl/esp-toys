@@ -32,7 +32,9 @@
 #include <QtWidgets/QGraphicsView>
 #include <QtCharts/QChartGlobal>
 #include <QFile>
-#include <qsplineseries.h>
+#include <QLabel>
+#include <QSplineSeries>
+#include <QSettings>
 #include "qyandexdisk.h"
 
 QT_BEGIN_NAMESPACE
@@ -60,6 +62,7 @@ public:
 
 protected:
     void resizeEvent(QResizeEvent *event);
+    void wheelEvent(QWheelEvent *event);
 
 public slots:
     void tooltipTemperature(QPointF point, bool state);
@@ -77,6 +80,7 @@ private:
     QString m_databaseName;
     QList<QYandexDisk::FileInfo*> m_fileList;
     QString m_currentFilename;
+    QLabel *m_label;
 };
 
 #endif

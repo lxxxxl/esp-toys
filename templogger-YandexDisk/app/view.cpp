@@ -50,6 +50,11 @@ View::View(QWidget *parent)
     m_chart->setMinimumSize(640, 480);
     m_chart->legend()->hide();
 
+    // status label
+    m_label = new QLabel();
+    m_label->setAttribute(Qt::WA_TranslucentBackground);
+    scene()->addWidget(m_label);
+
     //lines
     m_temperature = new QSplineSeries;
     m_humidity = new QSplineSeries;
@@ -92,16 +97,18 @@ View::View(QWidget *parent)
 
     this->setMouseTracking(true);
 
+    // read token from config file
+    QSettings settings("config.ini", QSettings::IniFormat);
+    settings.beginGroup("yadisk");
+    QString token = settings.value("token","").toString();
+
     // Yandex disk
-    m_disk = new QYandexDisk("TOKEN");
+    m_disk = new QYandexDisk(token);
     connect(m_disk, SIGNAL(signalDownloaded(QByteArray)), this, SLOT(slotDownloaded(QByteArray)));
     connect(m_disk, SIGNAL(signalList(QList<QYandexDisk::FileInfo*>)), this, SLOT(slotList(QList<QYandexDisk::FileInfo*>)));
 
-    qDebug() << "Downloading new data";
+    m_label->setText("Downloading new data");
     m_disk->list("/test/test/");
-
-
-
 }
 
 void View::resizeEvent(QResizeEvent *event)
@@ -110,7 +117,25 @@ void View::resizeEvent(QResizeEvent *event)
         scene()->setSceneRect(QRect(QPoint(0, 0), event->size()));
          m_chart->resize(event->size());
     }
+    m_label->setGeometry(
+                QRect(
+                    mapToScene(
+                        0,
+                        event->size().height() - 12).toPoint(),
+                    mapToScene(
+                        event->size().width(),
+                        event->size().height()).toPoint()));
     QGraphicsView::resizeEvent(event);
+}
+
+void View::wheelEvent(QWheelEvent *event)
+{
+    QPoint numDegrees = event->angleDelta() / 8;
+    if (numDegrees.y() < 0)
+        m_chart->zoomOut();
+    else if (numDegrees.y() > 0)
+        m_chart->zoomIn();
+    event->accept();
 }
 
 void View::tooltipTemperature(QPointF point, bool state)
@@ -186,13 +211,14 @@ void View::loadDatabase()
     }
 
     // repaint graph
-    qDebug() << "Repainting graph";
+    m_label->setText("Repainting graph");
     m_chart->removeSeries(m_temperature);
     m_chart->removeSeries(m_humidity);
     m_chart->addSeries(m_temperature);
     m_chart->addSeries(m_humidity);
     m_chart->update();
     repaint();
+    m_label->setText("");
     return;
 }
 
@@ -201,7 +227,7 @@ void View::downloadNextFile()
     if (m_fileList.count() > 0){
         QYandexDisk::FileInfo* f = m_fileList.at(0);
         m_currentFilename = f->path;
-        qDebug() << "Downloading " << f->name;
+        m_label->setText("Downloading " + f->name);
         m_disk->download(f->path);
         m_fileList.remove(0);
         delete f;
@@ -248,7 +274,7 @@ void View::slotDownloaded(QByteArray data)
 }
 void View::slotList(QList<QYandexDisk::FileInfo*> list)
 {
-    qDebug() << "New reports: " << list.count();
+    m_label->setText(QString("New reports: %1").arg(QString::number(list.count())));
     m_fileList = list;
     downloadNextFile();
 }
